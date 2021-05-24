@@ -11,7 +11,7 @@ import {
     StatusBar 
 } from 'react-native';
 
-import { RestaurantInfo } from '../components/restaurant-info';
+import { RestaurantInfoCard } from '../components/restaurant-info-card';
 
 const IS_IOS = Platform.OS === 'ios';
 const DATA = [
@@ -35,7 +35,7 @@ export const RestaurantsScreen = () => {
     const renderItem = ({ item }) => {
         return (
           <TouchableOpacity>
-            <RestaurantInfo />
+            <RestaurantInfoCard />
           </TouchableOpacity>
         );
     };
