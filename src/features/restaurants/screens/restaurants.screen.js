@@ -1,19 +1,34 @@
 import React, { useState} from 'react';
 import { Searchbar } from 'react-native-paper';
-import { 
-    StyleSheet, 
-    Text, 
-    View, 
-    FlatList, 
-    SafeAreaView, 
+import {
+    FlatList,
     Platform, 
     TouchableOpacity, 
     StatusBar 
 } from 'react-native';
 
-import { RestaurantInfoCard } from '../components/restaurant-info-card';
+import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
+import styled from 'styled-components/native';
 
 const IS_IOS = Platform.OS === 'ios';
+
+const RestaurantScreenContainer = styled.SafeAreaView`
+  flex: 1;
+  margin-top: ${IS_IOS ? 0 : StatusBar.currentHeight}px;
+`;
+
+const Search = styled.View`
+  padding: 16px
+  paddingVertical: 10px
+  backgroundColor: green;
+`;
+
+const RestaurantList = styled(FlatList)`
+  flex: 1;
+  padding: 16px;
+  backgroundColor: blue;
+`;
+
 const DATA = [
 {
     id: 1,
@@ -26,54 +41,34 @@ const DATA = [
 ];
 
 export const RestaurantsScreen = () => {
-    const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
 
-    const onQueryChange = (query) => {
-      setSearchQuery(query);
-    }
+  const onQueryChange = (query) => {
+    setSearchQuery(query);
+  }
 
-    const renderItem = ({ item }) => {
-        return (
-          <TouchableOpacity>
-            <RestaurantInfoCard />
-          </TouchableOpacity>
-        );
-    };
+  const renderItem = ({ item }) => {
+      return (
+        <TouchableOpacity>
+          <RestaurantInfoCard />
+        </TouchableOpacity>
+      );
+  };
 
-    return (
-        <React.Fragment>
-        <SafeAreaView style={styles.container}>
-          <View style={ styles.search }>
-            <Searchbar 
-              placeholder="search"
-              onChangeText={ onQueryChange }
-              value={searchQuery}
-            />
-          </View>
-          <FlatList 
-            data={ DATA }
-            renderItem={ renderItem }
-            keyExtractor={ item => item.id.toString() }
-            style={ styles.list}
-          />
-        </SafeAreaView>
-      </React.Fragment>
-    );
+  return (
+    <RestaurantScreenContainer>
+      <Search>
+        <Searchbar 
+          placeholder="search"
+          onChangeText={ onQueryChange }
+          value={searchQuery}
+        />
+      </Search>
+      <RestaurantList 
+        data={ DATA }
+        renderItem={ renderItem }
+        keyExtractor={ item => item.id.toString() }
+      />
+    </RestaurantScreenContainer>
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: IS_IOS ? 0 : StatusBar.currentHeight,
-    },
-    search: {
-      padding: 16,
-      paddingVertical: 10,
-      backgroundColor: 'green'
-    },
-    list: {
-      flex: 1,
-      padding: 16,
-      backgroundColor: 'blue'
-    }
-  });
