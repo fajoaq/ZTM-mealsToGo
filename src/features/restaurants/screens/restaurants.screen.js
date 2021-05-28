@@ -18,15 +18,15 @@ const RestaurantScreenContainer = styled.SafeAreaView`
 `;
 
 const Search = styled.View`
-  padding: 16px
-  paddingVertical: 10px
-  backgroundColor: green;
+  padding: ${props => props.theme.space[3]}
+  paddingVertical: ${props => props.theme.space[2]}
+  backgroundColor: ${props => props.theme.colors.bg.primary};
 `;
 
 const RestaurantList = styled(FlatList)`
   flex: 1;
-  padding: 16px;
-  backgroundColor: blue;
+  padding: ${props => props.theme.space[3]};
+  background-color: ${props => props.theme.colors.bg.secondary};
 `;
 
 const DATA = [
