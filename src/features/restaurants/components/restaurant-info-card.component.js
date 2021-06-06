@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 
 import star from '../../../../assets/star';
 import open from '../../../../assets/open';
-import { space } from '../../../infrastructure/theme/spacing'
+import { Spacer } from '../../../components/spacer/spacer.component';
 
 const RestaurantCard = styled(Card)`
     background-color: ${props => props.theme.colors.bg.primary};
@@ -19,8 +19,8 @@ const RestaurantCardCover = styled(Card.Cover)`
 `;
 
 const Title = styled.Text`
-    font-family: ${(props) => props.theme.fonts.heading}
-    font-size: ${(props) => props.theme.fontSizes.body}
+    font-family: ${(props) => props.theme.fonts.heading};
+    font-size: ${(props) => props.theme.fontSizes.body};
     color: ${props => props.theme.colors.ui.primary};
 `;
 
@@ -29,28 +29,28 @@ const Info = styled.View`
 `;
 
 const Rating = styled.View`
-    flex-direction: row
-    align-items: center
+    flex-direction: row;
+    align-items: center;
     padding-top: ${(props) => props.theme.space[2]}
     padding-bottom: ${(props) => props.theme.space[2]}
 `;
 
 const Section = styled.View`
-    flex-direction: row
-    align-items: center
+    flex-direction: row;
+    align-items: center;
 `;
 
 const SectionEnd = styled.View`
-    flex: 1
-    flex-direction: row
-    justify-content: flex-end
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
 `;
 
 const Open = styled(SvgXml)``;
 
 const Address = styled.Text`
-    font-family: ${(props) => props.theme.fonts.body}
-    font-size: ${(props) => props.theme.fontSizes.caption}
+    font-family: ${(props) => props.theme.fonts.body};
+    font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
 export const RestaurantInfoCard = ({ restaurant={} }) => {
@@ -80,12 +80,14 @@ export const RestaurantInfoCard = ({ restaurant={} }) => {
                     </Rating>
                     <SectionEnd>
                         { isClosedTemporarily && 
-                            <Text variant="label" style={{ marginLeft: 11, color: 'red' }}>Closed Temporarily</Text> 
+                            <Text variant="label" style={{ color: 'red' }}>Closed Temporarily</Text> 
                         }
+                        <Spacer variant="left.large" />
                         { isOpenNow && 
-                            <SvgXml style={{ marginLeft: 11}} xml={ open } width={ 20 } height={ 20 } /> 
+                            <SvgXml style={{ }} xml={ open } width={ 20 } height={ 20 } /> 
                         }
-                        <Image style={{ marginLeft: 11, width: 15, height: 15}}  source={{uri: icon}} />
+                        <Spacer variant="left.large" />
+                        <Image style={{ width: 15, height: 15}}  source={{uri: icon}} />
                     </SectionEnd>
                 </Section>
                 <Address>{ address }</Address>
