@@ -9,9 +9,7 @@ import {
   Lato_400Regular,
 } from '@expo-google-fonts/lato'
 import { 
-  StyleSheet, 
-  Text,
-  TouchableOpacity
+  StyleSheet
 } from 'react-native';
 import { RestaurantsScreen } from './src/features/restaurants/screens/restaurants.screen';
 import { ThemeProvider } from 'styled-components';
