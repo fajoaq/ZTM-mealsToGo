@@ -8,9 +8,6 @@ import {
   useFonts as useLato,
   Lato_400Regular,
 } from '@expo-google-fonts/lato'
-import { 
-  StyleSheet
-} from 'react-native';
 import { RestaurantsScreen } from './src/features/restaurants/screens/restaurants.screen';
 import { ThemeProvider } from 'styled-components';
 
