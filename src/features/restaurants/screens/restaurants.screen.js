@@ -3,19 +3,11 @@ import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 import {
     FlatList,
-    Platform, 
-    TouchableOpacity, 
-    StatusBar 
+    TouchableOpacity
 } from 'react-native';
 
+import { SafeArea } from '../../../components/utility/safe-area.component';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
-
-const IS_IOS = Platform.OS === 'ios';
-
-const RestaurantScreenContainer = styled.SafeAreaView`
-  flex: 1;
-  margin-top: ${IS_IOS ? 0 : StatusBar.currentHeight}px;
-`;
 
 const SearchContainer = styled.View`
   padding: ${props => props.theme.space[3]}
@@ -59,7 +51,7 @@ export const RestaurantsScreen = () => {
   };
 
   return (
-    <RestaurantScreenContainer>
+    <SafeArea>
       <SearchContainer>
         <Searchbar 
           placeholder="search"
@@ -72,6 +64,6 @@ export const RestaurantsScreen = () => {
         renderItem={ renderItem }
         keyExtractor={ item => item.id.toString() }
       />
-    </RestaurantScreenContainer>
+    </SafeArea>
   );
 };
