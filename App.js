@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'; //remove
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+import { Ionicons } from '@expo/vector-icons';
 import {
   useFonts as useOswald,
   Oswald_400Regular
@@ -36,6 +37,16 @@ const SettingsScreen = () => (
 
 const Tab = createBottomTabNavigator();
 
+const generateTabBarIcon = (route, { focused, color, size}) => {
+  let iconName;
+
+  if(route.name === 'Restaurants') iconName = focused ? 'restaurant-outline' : 'restaurant';
+  else if(route.name === 'Map') iconName = focused ? 'map-outline' : 'map';
+  else if(route.name === 'Settings') iconName = focused ? 'settings-outline' : 'settings';
+
+  return <Ionicons name={ iconName } size={ size } color={ color } />;
+}
+
 const App = () => {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
@@ -46,7 +57,15 @@ const App = () => {
     <React.Fragment>
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={ ({ route }) => ({
+            tabBarIcon: ({ focused, color, size}) => generateTabBarIcon(route, { focused, color, size})
+          }) }
+          tabBarOptions={ {
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+          } }
+        >
           <Tab.Screen name="Restaurants" component={ RestaurantsScreen } />
           <Tab.Screen name="Map" component={ MapScreen } />
           <Tab.Screen name="Settings" component={ SettingsScreen } />
