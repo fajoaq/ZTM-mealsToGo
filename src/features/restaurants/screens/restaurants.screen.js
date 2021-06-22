@@ -37,8 +37,7 @@ const DATA = [
 ];
 
 export const RestaurantsScreen = () => {
-  const restaurantContext = useContext(RestaurantsContext);
-  console.log(restaurantContext.restaurants)
+  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -49,7 +48,7 @@ export const RestaurantsScreen = () => {
   const renderItem = ({ item }) => {
       return (
         <TouchableOpacity>
-          <RestaurantInfoCard />
+          <RestaurantInfoCard restaurant={ item } />
         </TouchableOpacity>
       );
   };
@@ -64,9 +63,9 @@ export const RestaurantsScreen = () => {
         />
       </SearchContainer>
       <RestaurantList 
-        data={ restaurantContext.restaurants }
+        data={ restaurants }
         renderItem={ renderItem }
-        keyExtractor={ item => item.toString() }
+        keyExtractor={ item => item.name.toString() }
       />
     </SafeArea>
   );
