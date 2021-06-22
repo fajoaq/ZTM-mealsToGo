@@ -9,7 +9,7 @@ export const restaurantsRequest = async (location = "37.7749295,-122.4194155") =
     return mock;
 };
 
-const restaurantsTransform = ({ results=[] }) => {
+export const restaurantsTransform = ({ results=[] }) => {
     const mappedResults = results.map((restaurant) => {
         return {
             ...restaurant,
