@@ -4,16 +4,16 @@ import { locations } from './location.mock';
 
 export const locationRequest = async (searchTerm) => {
     try {
-        return await locations[searchTerm];
+        return await { ...locations[searchTerm] };
     } catch (error) {
-        console.log(error)
+        return({ error });
     }
 };
 
-export const locationTransform = ({ result }) => {
-    const formattedResponse = camelize(result);
-    const { geomertry = {} } = formattedResponse[0];
-    const { lat, lng }  = geomertry.location
+export const locationTransform = ({ results }) => {
+    const formattedResponse = camelize(results);
+    const { geometry = {} } = formattedResponse[0];
+    const { lat, lng }  = geometry.location
     
     return { lat, lng };
 }

@@ -18,6 +18,7 @@ import { RestaurantsScreen } from './src/features/restaurants/screens/restaurant
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/infrastructure/theme';
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
+import { LocationContextProvider } from './src/services/location/location.context';
 
 const MapScreen = () => (
   <SafeArea>
@@ -57,24 +58,25 @@ const App = () => {
   return (
     <React.Fragment>
     <ThemeProvider theme={theme}>
-      <RestaurantsContextProvider>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={ ({ route }) => ({
-              tabBarIcon: ({ focused, color, size}) => generateTabBarIcon(route, { focused, color, size})
-            }) }
-            tabBarOptions={ {
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
-            } }
-          >
-            <Tab.Screen name="Restaurants" component={ RestaurantsScreen } />
-            <Tab.Screen name="Map" component={ MapScreen } />
-            <Tab.Screen name="Settings" component={ SettingsScreen } />
-          </Tab.Navigator>
-        </NavigationContainer>
-      </RestaurantsContextProvider>
-    
+      <LocationContextProvider>
+        <RestaurantsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={ ({ route }) => ({
+                tabBarIcon: ({ focused, color, size}) => generateTabBarIcon(route, { focused, color, size})
+              }) }
+              tabBarOptions={ {
+                activeTintColor: 'tomato',
+                inactiveTintColor: 'gray',
+              } }
+            >
+              <Tab.Screen name="Restaurants" component={ RestaurantsScreen } />
+              <Tab.Screen name="Map" component={ MapScreen } />
+              <Tab.Screen name="Settings" component={ SettingsScreen } />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContextProvider>
+      </LocationContextProvider>
       <ExpoStatusBar style="auto" />
     </ThemeProvider>
     </React.Fragment>
