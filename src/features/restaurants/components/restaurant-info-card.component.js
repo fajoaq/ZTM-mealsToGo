@@ -23,23 +23,29 @@ export const RestaurantInfoCard = ({ restaurant={} }) => {
         photos=[
             "https://www.foodiesfeed.com/wp-content/uploads/2020/09/breakfast-sandwich-with-hummus-spread-and-fresh-vegetables-1.jpg"
         ],
-        address="Some random street",
+        address="Some address",
         rating=4,
         isOpenNow=true,
-        isClosedTemporarily=true
+        isClosedTemporarily=true,
+        placeId
     } = restaurant;
 
     const ratingArray = Array.from(new Array(Math.floor(rating)));
 
     return (
-        <RestaurantCard elevation={5} key={name}>
+        <RestaurantCard elevation={5}>
             <RestaurantCardCover source={{ uri: photos[0] }} />
             <Info>
                 <Text>{ name }</Text>
                 <Section>
                     <Rating>
-                    { ratingArray.map((_,index) => (<SvgXml key={index} xml={ star } width={ 20 } height={ 20 } />
-                        ))}
+                    { ratingArray.map((_,i) => 
+                        (<SvgXml 
+                            key={`star-${placeId}-${i}`} 
+                            xml={ star } 
+                            width={ 20 } 
+                            height={ 20 } 
+                        />))}
                     </Rating>
                     <SectionEnd>
                         { isClosedTemporarily && 
