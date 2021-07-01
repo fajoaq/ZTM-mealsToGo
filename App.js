@@ -24,14 +24,14 @@ const App = () => {
 
   return (
     <React.Fragment>
-    <ThemeProvider theme={theme}>
-      <LocationContextProvider>
-        <RestaurantsContextProvider>
-          <Navigation />
-        </RestaurantsContextProvider>
-      </LocationContextProvider>
-      <ExpoStatusBar style="auto" />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <Navigation />
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
+        <ExpoStatusBar style="auto" />
+      </ThemeProvider>
     </React.Fragment>
   );
 }
