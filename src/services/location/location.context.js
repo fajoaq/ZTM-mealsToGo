@@ -16,7 +16,6 @@ export const LocationContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
-
         (async () => {
             if(!keyword.length) return; //no search term, return early
         
