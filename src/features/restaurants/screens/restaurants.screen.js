@@ -1,9 +1,9 @@
-import React, { useState, useContext} from 'react';
+import React, { useContext} from 'react';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import {
     FlatList,
-    TouchableOpacity
+    Pressable
 } from 'react-native';
 
 import { SafeArea } from '../../../components/utility/safe-area.component';
@@ -41,14 +41,14 @@ const DATA = [
 }
 ];
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
   const renderItem = ({ item }) => {
       return (
-        <TouchableOpacity>
+        <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
           <RestaurantInfoCard restaurant={ item } />
-        </TouchableOpacity>
+        </Pressable>
       );
   };
 
