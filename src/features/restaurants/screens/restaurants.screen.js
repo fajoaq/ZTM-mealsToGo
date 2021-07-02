@@ -44,14 +44,14 @@ const DATA = [
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
-  const onPressCard = (screen) => {
-    navigation.navigate(screen)
+  const onPressCard = (screen, params) => {
+    navigation.navigate(screen, params)
   };
 
   const renderItem = ({ item }) => {
       return (
         <TouchableOpacity 
-          onPress={ () => onPressCard('RestaurantDetail') }
+          onPress={ () => onPressCard('RestaurantDetail', { restaurant: item }) }
         >
           <RestaurantInfoCard restaurant={ item } />
         </TouchableOpacity>
