@@ -3,7 +3,7 @@ import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import {
     FlatList,
-    Pressable
+    TouchableOpacity
 } from 'react-native';
 
 import { SafeArea } from '../../../components/utility/safe-area.component';
@@ -44,11 +44,17 @@ const DATA = [
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
+  const onPressCard = (screen) => {
+    navigation.navigate(screen)
+  };
+
   const renderItem = ({ item }) => {
       return (
-        <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
+        <TouchableOpacity 
+          onPress={ () => onPressCard('RestaurantDetail') }
+        >
           <RestaurantInfoCard restaurant={ item } />
-        </Pressable>
+        </TouchableOpacity>
       );
   };
 

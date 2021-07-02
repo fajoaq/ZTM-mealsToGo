@@ -1,26 +1,44 @@
 import React from 'react';
 import { Text } from 'react-native'
-import { createStackNavigator } from '@react-navigation/stack';
+import { 
+    createStackNavigator,
+    TransitionPresets
+} from '@react-navigation/stack';
 
 import { RestaurantsScreen } from '../../features/restaurants/screens/restaurants.screen';
 
-const restaurantStack = createStackNavigator();
+const RestauranStack = createStackNavigator();
+
+const navigatorConfig = {
+    screenOptions: {
+        ...TransitionPresets.ModalPresentationIOS
+    },
+    headerMode: 'none'
+}
 
 const screenConfig = {
-    headerMode: "none"
+    options: {
+        gestureEnabled: true
+    }
 }
+
+const RestaurantDetail = () => (
+    <Text>Restaurant Detail</Text>
+)
 
 export const RestaurantsNavigator = () => {
     return (
-        <restaurantStack.Navigator {...screenConfig}>
-            <restaurantStack.Screen 
+        <RestauranStack.Navigator {...navigatorConfig}>
+            <RestauranStack.Screen 
                 name="Restaurants" 
-                component={ RestaurantsScreen } 
+                component={ RestaurantsScreen }
+                {...screenConfig}
             />
-            <restaurantStack.Screen 
+            <RestauranStack.Screen 
                 name="RestaurantDetail" 
-                component={ () => (<Text>Resturant Detail</Text>) } 
+                component={ RestaurantDetail } 
+                {...screenConfig}
             />
-        </restaurantStack.Navigator>
+        </RestauranStack.Navigator>
     );
 };
