@@ -4,14 +4,13 @@ import styled from 'styled-components/native';
 
 import { LocationContext } from '../../../services/location/location.context';
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
+import { MapCallout } from '../components/map-callout.component';
 import { Search } from '../components/search.component';
 
 const Map = styled(MapView)`
     height: 100%;
     width: 100%;
 `;
-
-const SomeText = styled.Text``;
 
 export const MapScreen = () => {
     const { location } = useContext(LocationContext);
@@ -46,7 +45,7 @@ export const MapScreen = () => {
                         }}
                     >
                         <MapView.Callout>
-                            <SomeText>Hi there.</SomeText>
+                           <MapCallout restaurant={ restaurant } />
                         </MapView.Callout>
                     </MapView.Marker>
                 }) 
