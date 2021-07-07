@@ -11,6 +11,8 @@ const Map = styled(MapView)`
     width: 100%;
 `;
 
+const SomeText = styled.Text``;
+
 export const MapScreen = () => {
     const { location } = useContext(LocationContext);
     const { lat, lng, viewport } = location;
@@ -35,7 +37,19 @@ export const MapScreen = () => {
                     longitudeDelta: 0.02,
                 }}
             >
-                { restaurants.map((restaurant) => null) 
+                { restaurants.map((restaurant) => {
+                    return <MapView.Marker
+                        key={ restaurant.name } title={ restaurant.name }
+                        coordinate={{
+                            latitude: restaurant.geometry.location.lat,
+                            longitude: restaurant.geometry.location.lng,
+                        }}
+                    >
+                        <MapView.Callout>
+                            <SomeText>Hi there.</SomeText>
+                        </MapView.Callout>
+                    </MapView.Marker>
+                }) 
                 }
             </Map>
         </React.Fragment>
