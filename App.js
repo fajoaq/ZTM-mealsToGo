@@ -15,6 +15,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './src/infrastructure/theme';
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
 import { LocationContextProvider } from './src/services/location/location.context';
+import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
 import { Navigation } from './src/infrastructure/navigation';
 
 const App = () => {
@@ -26,11 +27,13 @@ const App = () => {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation />
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
         <ExpoStatusBar style="auto" />
       </ThemeProvider>
     </React.Fragment>
